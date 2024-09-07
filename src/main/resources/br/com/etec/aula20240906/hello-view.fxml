@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="729.0" prefWidth="734.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="br.com.etec.aula20240906.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="694.0" spacing="10.0">
+         <children>
+            <Label text="Nome:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="txtNome" prefHeight="44.0" prefWidth="582.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="694.0" spacing="10.0">
+         <children>
+            <Label text="Email:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtEmail" prefHeight="44.0" prefWidth="582.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="694.0" spacing="10.0">
+         <children>
+            <Label text="Telefone:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtTelefone" prefHeight="44.0" prefWidth="582.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="32.0" prefWidth="694.0" spacing="10.0">
+         <children>
+            <RadioButton fx:id="rbMasculino" mnemonicParsing="false" text="Masculino">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="grpSexo" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rbFeminino" mnemonicParsing="false" text="Feminino" toggleGroup="$grpSexo">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </RadioButton>
+            <CheckBox fx:id="chkCasado" mnemonicParsing="false" text="Casado">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </CheckBox>
+         </children>
+      </HBox>
+      <Button fx:id="btnCadastrar" mnemonicParsing="false" onAction="#onClickCadastrar" prefHeight="44.0" prefWidth="632.0" text="Cadastrar">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <TextArea fx:id="txtAreaDados" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</VBox>
