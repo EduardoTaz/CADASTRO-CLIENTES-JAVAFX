@@ -2,6 +2,7 @@ package br.com.etec.aula20240906;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import model.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;

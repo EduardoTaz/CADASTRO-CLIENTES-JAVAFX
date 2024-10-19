@@ -1,4 +1,4 @@
-package br.com.etec.aula20240906;
+package model;
 
 public class Cliente {
 
@@ -17,6 +17,9 @@ public class Cliente {
         this.telefone = telefone;
         this.sexo = sexo;
         this.casado = casado;
+    }
+
+    public Cliente() {
     }
 
     public Integer getId() {
@@ -76,8 +79,4 @@ public class Cliente {
                 ", sexo='" + sexo + '\'' +
                 ", casado=" + casado + System.lineSeparator();
     }
-
-
-
-
 }
