@@ -24,7 +24,7 @@ public class ClienteDao {
 
 
     public boolean inserir(model.Cliente cliente) {
-        String sql = "INSERT INTO clientes (nome, email, telefone, sexo, casado) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO clientes (nome, email, telefone, sexo, casado) VALUES (?,?,?,?,?)"; // se tudo estiver certo, ele vai inserir os dados com os parametros "?"
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, cliente.getNome());
@@ -50,6 +50,7 @@ public class ClienteDao {
             ResultSet resultado = stmt.executeQuery();
 
             if(resultado.next()) {
+                retorno.setId(resultado.getInt("id"));
                 retorno.setNome(resultado.getString("nome"));
                 retorno.setEmail(resultado.getString("email"));
                 retorno.setTelefone(resultado.getString("telefone"));

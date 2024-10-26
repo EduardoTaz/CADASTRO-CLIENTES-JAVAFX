@@ -1,13 +1,25 @@
 package br.com.etec.aula20240906;
 
+import br.com.etec.aula20240906.model.dao.ClienteDao;
+import br.com.etec.aula20240906.model.database.Database;
+import br.com.etec.aula20240906.model.database.DatabaseFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Cliente;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HelloController {
+    // Atributos para manipulação de Banco de Dados
+    // Classes do tipo Static não precisa ser instanciada
+    // Classes do tipo Final outra não pode herdar dela, não pode ter classes filhas
+    private final Database database = DatabaseFactory.getDatabase("mysql");
+    private final Connection connection = database.conectar();
+    private final ClienteDao clienteDao = new ClienteDao();
+
+
 
     @FXML
     private Button btnCadastrar;
@@ -61,6 +73,16 @@ public class HelloController {
             cliente = new Cliente(id, txtNome.getText(), txtEmail.getText(), txtTelefone.getText(), sexo, chkCasado.isSelected()); // pega os dados
             listaClientes.add(cliente);
             txtAreaDados.setText(listaClientes.toString());
+
+            clienteDao.setConnection(connection);
+
+
+            if(clienteDao.inserir(cliente)) {
+                avisoBd("Salvar registro", "Cadastro de cliente", "Salvo com sucesso");
+            } else {
+                avisoBd("Salvar registro", "Cadastro de cliente", "Erro ao salvar");
+            }
+
             limparCampos();
         }
 
@@ -72,6 +94,16 @@ public class HelloController {
             sexo = "Feminino";
         }
         */
+    }
+
+    @FXML
+    private void avisoBd(String title, String header, String content) {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle(title);
+        alerta.setHeaderText(header);
+        alerta.setContentText(content);
+        alerta.show();
+        return;
     }
 
     @FXML
