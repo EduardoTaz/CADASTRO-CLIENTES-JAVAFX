@@ -91,7 +91,7 @@
       </Button>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
          <children>
-            <TextField fx:id="txtBuscar" prefHeight="44.0" prefWidth="483.0">
+            <TextField fx:id="txtBuscar" prefHeight="44.0" prefWidth="305.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -101,9 +101,19 @@
                   <Font size="20.0" />
                </font>
             </Button>
+            <Button fx:id="btnBuscar1" mnemonicParsing="false" onAction="#onClickBuscarBanco" prefHeight="44.0" prefWidth="187.0" text="Buscar no banco">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
       <TextArea fx:id="txtAreaDados" prefHeight="200.0" prefWidth="200.0" />
+      <Button mnemonicParsing="false" onAction="#onClickDeletar" prefHeight="44.0" prefWidth="187.0" text="Deletar usuário">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
    <opaqueInsets>
       <Insets />

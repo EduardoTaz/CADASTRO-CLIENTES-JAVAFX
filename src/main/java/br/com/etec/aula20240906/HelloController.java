@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import model.Cliente;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,6 +97,14 @@ public class HelloController {
         */
     }
 
+
+
+
+
+
+
+
+
     @FXML
     private void avisoBd(String title, String header, String content) {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
@@ -157,6 +166,12 @@ public class HelloController {
         }
     }
 
+
+
+
+
+
+    @FXML
     private void populaCampos(Cliente cli) {
         txtNome.setText(cli.getNome());
         txtEmail.setText(cli.getEmail());
@@ -174,6 +189,67 @@ public class HelloController {
             chkCasado.setSelected(true);
         } else {
             chkCasado.setSelected(false);
+        }
+    }
+
+
+    @FXML
+    protected void onClickBuscarBanco() {
+        int idBusca;
+
+        try {
+            idBusca = Integer.parseInt(txtBuscar.getText());
+
+        } catch (Exception ex) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("ERRO");
+            alerta.setHeaderText("Erro de conversão");
+            alerta.setContentText("O campo não é um número válido");
+            alerta.show();
+            return;
+        }
+
+        clienteDao.setConnection(connection);
+        cliente = clienteDao.getClienteById(idBusca);
+
+        if(cliente.getId() != null) {
+            populaCampos(cliente);
+            txtNome.setEditable(false);
+            txtEmail.setEditable(false);
+            txtTelefone.setEditable(false);
+
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Busca de cliente");
+            alerta.setHeaderText("Busca de cliente");
+            alerta.setContentText("Não existe um cliente com esse id");
+            alerta.show();
+            return;
+        }
+    }
+
+    @FXML
+    protected void onClickDeletar() {
+        int idBusca;
+
+        try {
+            idBusca = Integer.parseInt(txtBuscar.getText());
+
+        } catch (Exception ex) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("ERRO");
+            alerta.setHeaderText("Erro de conversão");
+            alerta.setContentText("O campo não é um número válido");
+            alerta.show();
+            return;
+        }
+
+        clienteDao.setConnection(connection);
+
+        if(clienteDao.deleteClienteById(idBusca)) {
+            avisoBd("Salvar cliente", "Cadastro deletado", "Deletado com sucesso");
+        } else {
+            avisoBd("Erro ao deletar", "Erro ao deletar", "Erro ao deletar");
         }
     }
 }

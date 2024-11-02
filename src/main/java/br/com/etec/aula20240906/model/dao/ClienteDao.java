@@ -1,6 +1,7 @@
 package br.com.etec.aula20240906.model.dao;
 
 import br.com.etec.aula20240906.model.database.DatabaseMySQL;
+import javafx.fxml.FXML;
 
 import javax.xml.transform.Result;
 import java.sql.Connection;
@@ -49,7 +50,7 @@ public class ClienteDao {
             stmt.setInt(1, id);
             ResultSet resultado = stmt.executeQuery();
 
-            if(resultado.next()) {
+            if(resultado.next()) { // se tiver um id igual esse  cara, ele retorna true
                 retorno.setId(resultado.getInt("id"));
                 retorno.setNome(resultado.getString("nome"));
                 retorno.setEmail(resultado.getString("email"));
@@ -61,9 +62,24 @@ public class ClienteDao {
             Logger.getLogger(DatabaseMySQL.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+
         return retorno;
     }
 
+    public Boolean deleteClienteById(int id) {
+        String sql = "DELETE FROM clientes WHERE id = ?";
 
-
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseMySQL.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 }
+
+
+// DAO = DATA ACESS OBJECT
