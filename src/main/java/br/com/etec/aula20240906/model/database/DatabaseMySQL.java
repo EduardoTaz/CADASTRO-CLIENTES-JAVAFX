@@ -7,28 +7,28 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DatabaseMySQL implements Database {
+    public class DatabaseMySQL implements Database {
 
-    private Connection connection;
+        private Connection connection;
 
-    @Override
-    public Connection conectar() {
-        try {
-            this.connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/javadb", "root", "");
-            return this.connection;
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseMySQL.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+        @Override
+        public Connection conectar() {
+            try {
+                this.connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/javadb", "root", "");
+                return this.connection;
+            } catch (SQLException ex) {
+                Logger.getLogger(DatabaseMySQL.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
+            }
+
         }
 
-    }
-
-    @Override
-    public void desconectar() {
-        try {
-            connection.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseMySQL.class.getName()).log(Level.SEVERE, null, ex);
+        @Override
+        public void desconectar() {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DatabaseMySQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
-}
